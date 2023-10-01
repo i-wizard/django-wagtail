@@ -10,4 +10,45 @@
         <a class="btn btn-primary btn-lg" href="{{self.banner_cta.url}}" role="button">Learn more {{self.banner_cta}}</a>
     {% endif %}
 </div>
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+      {% for loop_cylcle in self.carousel_images.all %}
+      {% image loop_cylcle.carousel_image fill-900x600 as img %}
+        <div class="carousel-item {% if forloop.counter == 1 %}active {% endif %}">
+          <img src="{{img.url}}" class="d-block w-100" alt="...">
+        </div>
+      {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% if settings.sitesettings.SocialMediaSettings.facebook %}
+<a href="{{settings.sitesettings.SocialMediaSettings.facebook}}">
+    <i class="fab fa-facebook"></i>
+</a>
+{% endif %}
+{% if settings.sitesettings.SocialMediaSettings.twitter %}
+<a href="{{settings.sitesettings.SocialMediaSettings.twitter}}">
+    <i class="fab fa-twitter"></i>
+</a>
+{% endif %}
+{% if settings.sitesettings.SocialMediaSettings.youtube %}
+<a href="{{settings.sitesettings.SocialMediaSettings.youtube}}">
+    <i class="fab fa-youtube"></i>
+</a>
+{% endif %}
+
 {% endblock %}
